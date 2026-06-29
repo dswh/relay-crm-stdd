@@ -1,13 +1,11 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 7 · Main line complete 🎉
-> Lead Scoring is shipped, reviewed, and deep. Four **side-demos** branch off from here:
+> ### 📍 Side-demo 11 · /swarm — fan out in parallel
+> The wave plan (`.scratch/lead-scoring/SWARM-PLAN.md`) is set: tiers (002) ∥ decay (003), independent slices.
 >
-> - **`08_begin`** → `/diagnose` (a planted bug) · **`09_begin`** → `/triage` (a messy inbox)
-> - **`10_begin`** → `/afk` (the night shift) · **`11_begin`** → `/swarm` (parallel build)
->
-> **▶ Pick one:** e.g. `git checkout 08_begin`.
-> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+> **▶ Do now:** run the **`/swarm`** pipeline (`scripts/parallel-run.ts`) — a git worktree per issue, implement → review → merge.
+> **✓ Compare / recover:** `git diff 11_begin..11_end` · or `git checkout 11_end` (13 tests). Wave branches: `relay/002-tiers`, `relay/003-decay`.
+> _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
 Clone it, run it, and build alongside the instructor using the STDD skills that
