@@ -1,10 +1,9 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Side-demo 11 · /swarm — fan out in parallel
-> The wave plan (`.scratch/lead-scoring/SWARM-PLAN.md`) is set: tiers (002) ∥ decay (003), independent slices.
+> ### ✅ Side-demo 11 done · /swarm
+> Tiers and decay built in parallel worktrees and merged (disjoint files → clean merge). 13 tests green. Next wave: 004 backfill unblocks.
 >
-> **▶ Do now:** run the **`/swarm`** pipeline (`scripts/parallel-run.ts`) — a git worktree per issue, implement → review → merge.
-> **✓ Compare / recover:** `git diff 11_begin..11_end` · or `git checkout 11_end` (13 tests). Wave branches: `relay/002-tiers`, `relay/003-decay`.
+> **↩ Try it yourself:** `git checkout 11_begin`.
 > _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.

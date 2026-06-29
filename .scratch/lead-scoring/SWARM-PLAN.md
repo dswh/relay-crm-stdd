@@ -29,3 +29,10 @@ they touch disjoint modules, so two agents can build them at once without collid
 Swarm produces *reviewed branches*, faster than you can read them — a human still
 owns QA and the merge. Parallelism without sandboxing corrupts a shared tree;
 worktrees + containers are not optional.
+
+## Result of this wave
+
+Both branches built green in isolation and merged cleanly — they touched disjoint
+modules (tiers → `scoringService` + UI; decay → `types` + new `decayService`), so
+there was nothing to resolve. 13 tests green on the merged tree. The next wave
+unblocks: **004 backfill** (← 001, 002, 003) is now the only remaining slice.
