@@ -1,12 +1,9 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 2 · Aligned — write the spec
-> `CONTEXT.md` is grown and the ADRs are written. The alignment is the asset; the doc just records it.
+> ### 📍 Sidebar · /spike (throwaway)
+> A detour off **`01_end`** to settle the tier/decay state machine with runnable code. The code is disposable — the **answer** is in **[`spike/NOTES.md`](./spike/NOTES.md)** (it folds into the spec + issue 003).
 >
-> **▶ Do now:** run **`/write-spec`** to synthesise the thread into a PRD (no re-interview).
-> **↪ Optional detour:** if a question needs runnable proof, `/spike` it — see branch **`02_end`**.
-> **✓ Compare / recover:** `git diff 03_begin..03_end` · or `git checkout 03_end`.
->
+> **▶ Back to the main line:** `git checkout 03_begin`, then run **`/write-spec`**.
 > _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
