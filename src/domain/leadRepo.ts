@@ -1,4 +1,4 @@
-import type { Activity, ActivityKind, Lead, ScoreEvent } from './types'
+import type { Activity, ActivityKind, Lead, ScoreEvent, ScoreReason } from './types'
 
 /**
  * The data seam for leads, their activity, and their score ledger. Services and
@@ -16,7 +16,7 @@ export interface LeadRepo {
   /** Append an activity and bump the lead's lastActivityAt. Returns it. */
   recordActivity(input: { leadId: string; kind: ActivityKind; at?: string }): Activity
   /** Append a score event to the ledger. Returns it. */
-  recordScoreEvent(input: { leadId: string; delta: number; reason: ActivityKind; at?: string }): ScoreEvent
+  recordScoreEvent(input: { leadId: string; delta: number; reason: ScoreReason; at?: string }): ScoreEvent
   /** A lead's current score: the sum of its ScoreEvent deltas. */
   getScore(leadId: string): number
 }
@@ -67,7 +67,7 @@ export class InMemoryLeadRepo implements LeadRepo {
     return activity
   }
 
-  recordScoreEvent(input: { leadId: string; delta: number; reason: ActivityKind; at?: string }): ScoreEvent {
+  recordScoreEvent(input: { leadId: string; delta: number; reason: ScoreReason; at?: string }): ScoreEvent {
     if (!this.leads.has(input.leadId)) throw new Error(`unknown lead: ${input.leadId}`)
     const at = input.at ?? new Date().toISOString()
     const event: ScoreEvent = { id: nextScoreEventId(), leadId: input.leadId, delta: input.delta, reason: input.reason, at }

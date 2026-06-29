@@ -31,13 +31,16 @@ export interface Activity {
   at: string // ISO
 }
 
-/** An immutable record that a lead's score changed by `delta`, for a `reason`
- *  (the ActivityKind that earned it), at a time. The ledger: a lead's Score is
- *  the running sum of its ScoreEvents (ADR 0002 — event-sourced, no stored total). */
+/** Why a score changed: the ActivityKind that earned it, or nightly `decay`. */
+export type ScoreReason = ActivityKind | 'decay'
+
+/** An immutable record that a lead's score changed by `delta`, for a `reason`,
+ *  at a time. The ledger: a lead's Score is the running sum of its ScoreEvents
+ *  (ADR 0002 — event-sourced, no stored total). */
 export interface ScoreEvent {
   id: string
   leadId: string
   delta: number
-  reason: ActivityKind // 'decay' is added when slice 003 lands
+  reason: ScoreReason
   at: string // ISO
 }

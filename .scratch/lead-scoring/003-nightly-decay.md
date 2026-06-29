@@ -1,8 +1,12 @@
 ---
-Status: ready-for-agent
+Status: done
 Type: enhancement
 Mode: human-in-loop
 ---
+
+> **Done** — built in the `/swarm` wave (branch `relay/003-decay`). `decayService`
+> with the spike's rules: idle-from-last-activity, whole calendar days, −2/night,
+> floor at 0; `ScoreEvent.reason` widened to include `decay`.
 
 # 003 · nightly decay
 
