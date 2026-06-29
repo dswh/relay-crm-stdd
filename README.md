@@ -1,12 +1,12 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 0 · You just cloned the repo
-> The STDD skills are installed but the repo **isn't configured** yet.
+> ### 📍 Checkpoint 1 · Setup done — time to Align
+> The repo is configured (tracker, labels, domain docs). You have one messy brief and no plan.
 >
-> **▶ Do now:** run **`/setup`** (wire up the issue tracker, triage labels, domain docs), then **`/ask`** to see the flow.
-> **✓ Compare / recover:** `git diff 00_begin..00_end` · or `git checkout 00_end`.
+> **▶ Do now:** read **[`BRIEF.md`](./BRIEF.md)**, then run **`/align`** — let it interview you to a shared design concept (it grows `CONTEXT.md` and writes ADRs as you go).
+> **✓ Compare / recover:** `git diff 01_begin..01_end` · or `git checkout 01_end`.
 >
-> _Self-paced map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
 Clone it, run it, and build alongside the instructor using the STDD skills that
@@ -26,9 +26,9 @@ npm run typecheck
 3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
 4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
 
-First run **`/setup`** once to wire up the issue tracker (local markdown in
-`.scratch/`), the triage labels, and the domain-doc layout the other skills assume.
-Lost? Run **`/ask`**.
+Everything you need is already wired (`/setup` has been run): the issue tracker
+(local markdown in `.scratch/`), the triage labels, and the domain docs
+(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
 
 ## What's here
 

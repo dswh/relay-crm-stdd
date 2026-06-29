@@ -4,9 +4,24 @@ A tiny CRM, and the live-build starter for the **STDD master class**. The goal o
 the session is to ship **Lead Scoring** end-to-end — from a messy Slack brief to a
 working feature — using the STDD skills installed in this repo.
 
-This repo has the STDD skills installed but **isn't configured yet** — run `/setup`
-once to wire up the issue tracker, triage labels, and domain-doc layout. Then read
-[`BRIEF.md`](./BRIEF.md) and run `/align`.
+Start by reading [`BRIEF.md`](./BRIEF.md), then run `/align`.
+
+## Agent skills
+
+This repo is pre-configured for the STDD skills (`/setup` has already been run).
+
+### Issue tracker
+Issues live as **local markdown** under `.scratch/<feature>/NNN-title.md` (no
+GitHub needed — clone and go). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+The five canonical triage roles map to their own names (`needs-triage`,
+`needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See
+`docs/agents/triage-labels.md`.
+
+### Domain docs
+Single-context: `CONTEXT.md` (glossary) + `docs/adr/` (decisions) at the root.
+Skills read these before touching an area. See `docs/agents/domain.md`.
 
 ## Coding standards
 
