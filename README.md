@@ -1,10 +1,9 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Side-demo 10 · /afk — the night shift
-> The afk harness is wired (`scripts/`) and the backlog (002–004) is sharp.
+> ### ✅ Side-demo 10 done · /afk
+> The night shift built issue 002 (tiers) test-first — a reviewed-ready commit, not a shipped feature. A human still owns QA + merge. 9 tests green.
 >
-> **▶ Do now:** run **`./scripts/run-once.sh`** — one autonomous pass picks the next afk issue, builds it test-first, commits. Watch it; sandbox before looping.
-> **✓ Compare / recover:** `git diff 10_begin..10_end` · or `git checkout 10_end` (9 tests).
+> **↩ Try it yourself:** `git checkout 10_begin`.
 > _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.

@@ -1,15 +1,18 @@
 import type { Lead } from '../domain/types'
+import type { Tier } from '../services/scoringService'
 import { LeadRow } from './LeadRow'
 
 export function LeadList({
   leads,
   scoreOf,
+  tierOf,
   selectedId,
   onSelect,
   onLogReply,
 }: {
   leads: Lead[]
   scoreOf: (id: string) => number
+  tierOf: (id: string) => Tier
   selectedId: string | null
   onSelect: (id: string) => void
   onLogReply: (id: string) => void
@@ -32,6 +35,7 @@ export function LeadList({
             key={lead.id}
             lead={lead}
             score={scoreOf(lead.id)}
+            tier={tierOf(lead.id)}
             selected={lead.id === selectedId}
             onSelect={onSelect}
             onLogReply={onLogReply}

@@ -46,6 +46,7 @@ export default function App() {
           <LeadList
             leads={leads}
             scoreOf={(id) => scoring.getScore(id)}
+            tierOf={(id) => scoring.getTier(id)}
             selectedId={selectedId}
             onSelect={setSelectedId}
             onLogReply={(id) => {
@@ -59,6 +60,8 @@ export default function App() {
         {selected && (
           <LeadDetail
             lead={selected}
+            score={scoring.getScore(selected.id)}
+            tier={scoring.getTier(selected.id)}
             activities={service.getActivities(selected.id)}
             onClose={() => setSelectedId(null)}
           />

@@ -24,6 +24,12 @@ export const statusLabel: Record<LeadStatus, string> = {
   qualified: 'Qualified',
 }
 
+export const tierLabel: Record<'hot' | 'warm' | 'cold', string> = {
+  hot: 'Hot',
+  warm: 'Warm',
+  cold: 'Cold',
+}
+
 export function initials(name: string): string {
   return name
     .split(' ')

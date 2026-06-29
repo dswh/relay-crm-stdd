@@ -11,6 +11,16 @@ import type { LeadRepo } from '../domain/leadRepo'
  */
 const REPLY_POINTS = 10
 
+/** A coarse band derived from a score — a view, not a stored field. */
+export type Tier = 'hot' | 'warm' | 'cold'
+
+/** Launch-default thresholds (CONTEXT.md): hot ≥ 20 · warm 8–19 · cold < 8. */
+export function tierOf(score: number): Tier {
+  if (score >= 20) return 'hot'
+  if (score >= 8) return 'warm'
+  return 'cold'
+}
+
 export function createScoringService(repo: LeadRepo) {
   return {
     /** A lead replied to one of our emails — award score. */
@@ -21,6 +31,11 @@ export function createScoringService(repo: LeadRepo) {
     /** A lead's current score (sum of its ScoreEvents). 0 if it has none. */
     getScore(leadId: string): number {
       return repo.getScore(leadId)
+    },
+
+    /** A lead's current tier (hot/warm/cold), derived from its score. */
+    getTier(leadId: string): Tier {
+      return tierOf(repo.getScore(leadId))
     },
   }
 }

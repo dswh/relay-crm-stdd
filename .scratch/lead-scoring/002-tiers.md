@@ -1,8 +1,11 @@
 ---
-Status: ready-for-agent
+Status: done
 Type: enhancement
 Mode: afk
 ---
+
+> **Done** — built by the `/afk` night shift. `tierOf` + `scoringService.getTier`;
+> tier badge on the list row and the detail header; thresholds pinned by tests.
 
 # 002 · tiers (hot / warm / cold)
 
