@@ -27,5 +27,20 @@ the lead is right now.
 **LeadRepo** — the data seam for leads and activities. Services and tests cross it;
 it *is* the test surface. See `/deepen`.
 
-<!-- Terms to be added during the build (don't pre-fill — earn them in /align):
-**Score**, **Tier** (hot/warm/cold), **ScoreEvent**, **Decay**, **Backfill**. -->
+<!-- Lead Scoring terms — earned in /align, written down with /model: -->
+
+**Score** — how worth-chasing a lead is *right now*: the running sum of its
+`ScoreEvent`s. Distinct from **Status** (pipeline stage).
+
+**ScoreEvent** — an immutable record that a lead's score changed by a `delta`, for a
+`reason` (the `ActivityKind` that earned it), at a time. A **Score** is the sum of
+them. _Avoid_: "event" alone — it collides with **Activity**; say ScoreEvent.
+
+**Tier** — a coarse band derived from a **Score**: `hot` / `warm` / `cold` (launch
+thresholds hot ≥ 20 · warm 8–19 · cold < 8). Per-rep tuning is out of scope for v1.
+
+**Decay** — the gradual cooling of a **Score** when a lead has no activity, so stale
+leads stop looking hot.
+
+**Backfill** — retroactively scoring the ~40,000 existing leads from their activity
+history.

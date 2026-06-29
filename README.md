@@ -1,10 +1,11 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 1 · Setup done — time to Align
-> The repo is configured (tracker, labels, domain docs). You have one messy brief and no plan.
+> ### 📍 Checkpoint 2 · Aligned — write the spec
+> `CONTEXT.md` is grown and the ADRs are written. The alignment is the asset; the doc just records it.
 >
-> **▶ Do now:** read **[`BRIEF.md`](./BRIEF.md)**, then run **`/align`** — let it interview you to a shared design concept (it grows `CONTEXT.md` and writes ADRs as you go).
-> **✓ Compare / recover:** `git diff 01_begin..01_end` · or `git checkout 01_end`.
+> **▶ Do now:** run **`/write-spec`** to synthesise the thread into a PRD (no re-interview).
+> **↪ Optional detour:** if a question needs runnable proof, `/spike` it — see branch **`02_end`**.
+> **✓ Compare / recover:** `git diff 03_begin..03_end` · or `git checkout 03_end`.
 >
 > _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
