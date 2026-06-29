@@ -1,10 +1,9 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Side-demo 09 · /triage — a messy inbox
-> Three raw requests landed in `.scratch/inbox/` (a feature ask, a near-duplicate, an override request).
+> ### ✅ Side-demo 09 done · /triage
+> Inbox cleared: one → ready-for-agent (issue 006), two → wontfix (one already-built, one out-of-scope). Every AI note carries the triage banner.
 >
-> **▶ Do now:** run **`/triage`** — categorise, set a state, write agent-ready briefs; send rejects to `.out-of-scope/`. Don't touch the `/slice` issues.
-> **✓ Compare / recover:** `git diff 09_begin..09_end` · or `git checkout 09_end`.
+> **↩ Try it yourself:** `git checkout 09_begin`.
 > _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
