@@ -1,15 +1,18 @@
 import type { Lead } from '../domain/types'
-import { initials, relativeTime, statusLabel } from './format'
+import type { Tier } from '../services/scoringService'
+import { initials, relativeTime, statusLabel, tierLabel } from './format'
 
 export function LeadRow({
   lead,
   score,
+  tier,
   selected,
   onSelect,
   onLogReply,
 }: {
   lead: Lead
   score: number
+  tier: Tier
   selected: boolean
   onSelect: (id: string) => void
   onLogReply: (id: string) => void
@@ -30,7 +33,8 @@ export function LeadRow({
       </td>
       <td className="muted">{lead.owner}</td>
       <td className="cell-score">
-        <span className="score-badge">{score}</span>
+        <span className={`tier-badge tier-${tier}`}>{tierLabel[tier]}</span>
+        <span className="score-num muted">{score}</span>
       </td>
       <td className="muted">{relativeTime(lead.lastActivityAt)}</td>
       <td className="cell-action">

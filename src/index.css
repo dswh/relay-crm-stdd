@@ -74,14 +74,18 @@ body { background: var(--bg); color: var(--ink); -webkit-font-smoothing: antiali
 .status-working { background: #fef3c7; color: #92400e; }
 .status-qualified { background: #dcfce7; color: #166534; }
 
-/* Lead Scoring — the score badge (tracer bullet 001). Tier colours land in 002. */
-.cell-score { width: 3.5rem; }
-.score-badge {
-  display: inline-block; min-width: 1.6rem; text-align: center;
-  font-size: 0.78rem; font-weight: 700; font-variant-numeric: tabular-nums;
-  padding: 0.12rem 0.45rem; border-radius: 999px;
-  background: #f1f5f9; color: #334155;
+/* Lead Scoring — tier badge (slice 002) + the numeric score beside it. */
+.cell-score { width: 5.5rem; white-space: nowrap; }
+.tier-badge {
+  display: inline-block; text-align: center;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.02em;
+  padding: 0.12rem 0.5rem; border-radius: 999px;
 }
+.tier-hot { background: #fee2e2; color: #b91c1c; }
+.tier-warm { background: #fef3c7; color: #92400e; }
+.tier-cold { background: #e2e8f0; color: #475569; }
+.score-num { margin-left: 0.4rem; font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+.detail-tier { margin: 0.4rem 0 0; }
 
 .cell-action { text-align: right; }
 .btn-reply {
