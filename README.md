@@ -1,10 +1,10 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 5 · Tracer bullet shipped — review it
-> Reply → award → badge works end to end; the list sorts by score. 7 tests pass.
+> ### 📍 Checkpoint 6 · Reviewed — keep it deep
+> The must-fix is applied; one finding became issue 005.
 >
-> **▶ Do now:** clear context and run **`/review`** against the standards in `CLAUDE.md`. Then QA: `npm run dev`, click "Log reply", watch a lead climb.
-> **✓ Compare / recover:** `git diff 06_begin..06_end` · or `git checkout 06_end`.
+> **▶ Do now:** run **`/sweep`** for deepening candidates, then **`/deepen`** the one you pick (unify the reply path into one module).
+> **✓ Compare / recover:** `git diff 07_begin..07_end` · or `git checkout 07_end`.
 >
 > _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 

@@ -12,8 +12,12 @@ export function createLeadService(repo: LeadRepo) {
   return {
     /** All leads, highest score first. Ties break by recency, then name. */
     listLeads(): Lead[] {
-      return repo.getLeads().sort((a, b) => {
-        const byScore = repo.getScore(b.id) - repo.getScore(a.id)
+      // Score each lead once — getScore scans the ledger, so calling it inside the
+      // comparator (twice per comparison) would be quadratic on the 40k backfill.
+      const leads = repo.getLeads()
+      const score = new Map(leads.map((l) => [l.id, repo.getScore(l.id)]))
+      return leads.sort((a, b) => {
+        const byScore = (score.get(b.id) ?? 0) - (score.get(a.id) ?? 0)
         if (byScore !== 0) return byScore
         const byRecency = b.lastActivityAt.localeCompare(a.lastActivityAt)
         return byRecency !== 0 ? byRecency : a.name.localeCompare(b.name)
