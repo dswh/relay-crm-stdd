@@ -1,11 +1,10 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 2 · Aligned — write the spec
-> `CONTEXT.md` is grown and the ADRs are written. The alignment is the asset; the doc just records it.
+> ### 📍 Checkpoint 3 · Spec written — slice it
+> `.scratch/lead-scoring/PRD.md` is the destination. Out-of-scope is the definition of done.
 >
-> **▶ Do now:** run **`/write-spec`** to synthesise the thread into a PRD (no re-interview).
-> **↪ Optional detour:** if a question needs runnable proof, `/spike` it — see branch **`02_end`**.
-> **✓ Compare / recover:** `git diff 03_begin..03_end` · or `git checkout 03_end`.
+> **▶ Do now:** run **`/slice`** to break the PRD into vertical-slice issues (a DAG, blockers first).
+> **✓ Compare / recover:** `git diff 04_begin..04_end` · or `git checkout 04_end`.
 >
 > _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
