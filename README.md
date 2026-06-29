@@ -1,10 +1,10 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 4 · Sliced — build the tracer bullet
-> Issues 001–004 form a DAG. 001 is the thinnest path through every layer.
+> ### 📍 Checkpoint 5 · Tracer bullet shipped — review it
+> Reply → award → badge works end to end; the list sorts by score. 7 tests pass.
 >
-> **▶ Do now:** in a fresh context, run **`/build .scratch/lead-scoring/001-reply-award-badge.md`** with **`/tdd`** — one behaviour at a time, red → green.
-> **✓ Compare / recover:** `git diff 05_begin..05_end` · or `git checkout 05_end` (7 tests green).
+> **▶ Do now:** clear context and run **`/review`** against the standards in `CLAUDE.md`. Then QA: `npm run dev`, click "Log reply", watch a lead climb.
+> **✓ Compare / recover:** `git diff 06_begin..06_end` · or `git checkout 06_end`.
 >
 > _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 

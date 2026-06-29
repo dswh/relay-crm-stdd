@@ -74,6 +74,15 @@ body { background: var(--bg); color: var(--ink); -webkit-font-smoothing: antiali
 .status-working { background: #fef3c7; color: #92400e; }
 .status-qualified { background: #dcfce7; color: #166534; }
 
+/* Lead Scoring — the score badge (tracer bullet 001). Tier colours land in 002. */
+.cell-score { width: 3.5rem; }
+.score-badge {
+  display: inline-block; min-width: 1.6rem; text-align: center;
+  font-size: 0.78rem; font-weight: 700; font-variant-numeric: tabular-nums;
+  padding: 0.12rem 0.45rem; border-radius: 999px;
+  background: #f1f5f9; color: #334155;
+}
+
 .cell-action { text-align: right; }
 .btn-reply {
   font-size: 0.76rem; font-weight: 600; color: var(--accent);

@@ -3,11 +3,13 @@ import { LeadRow } from './LeadRow'
 
 export function LeadList({
   leads,
+  scoreOf,
   selectedId,
   onSelect,
   onLogReply,
 }: {
   leads: Lead[]
+  scoreOf: (id: string) => number
   selectedId: string | null
   onSelect: (id: string) => void
   onLogReply: (id: string) => void
@@ -19,6 +21,7 @@ export function LeadList({
           <th>Lead</th>
           <th>Status</th>
           <th>Owner</th>
+          <th>Score</th>
           <th>Last activity</th>
           <th></th>
         </tr>
@@ -28,6 +31,7 @@ export function LeadList({
           <LeadRow
             key={lead.id}
             lead={lead}
+            score={scoreOf(lead.id)}
             selected={lead.id === selectedId}
             onSelect={onSelect}
             onLogReply={onLogReply}

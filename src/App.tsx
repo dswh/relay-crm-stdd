@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { seededRepo } from './domain/seed'
 import { createLeadService } from './services/leadService'
+import { createScoringService } from './services/scoringService'
 import { LeadList } from './ui/LeadList'
 import { LeadDetail } from './ui/LeadDetail'
 
@@ -8,6 +9,7 @@ export default function App() {
   // One in-memory repo for the session; a `tick` forces a re-read after writes.
   const repoRef = useRef(seededRepo())
   const service = useMemo(() => createLeadService(repoRef.current), [])
+  const scoring = useMemo(() => createScoringService(repoRef.current), [])
   const [, setTick] = useState(0)
   const refresh = () => setTick((t) => t + 1)
 
@@ -39,14 +41,17 @@ export default function App() {
         <section className="leads-panel">
           <div className="panel-head">
             <h1>Leads</h1>
-            <span className="count">{leads.length} leads · sorted by recency</span>
+            <span className="count">{leads.length} leads · sorted by score</span>
           </div>
           <LeadList
             leads={leads}
+            scoreOf={(id) => scoring.getScore(id)}
             selectedId={selectedId}
             onSelect={setSelectedId}
             onLogReply={(id) => {
+              // the reply path: record the activity AND award score
               service.logReply(id)
+              scoring.recordReply(id)
               refresh()
             }}
           />

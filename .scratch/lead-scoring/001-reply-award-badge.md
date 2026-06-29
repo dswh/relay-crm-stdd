@@ -1,8 +1,11 @@
 ---
-Status: ready-for-agent
+Status: done
 Type: enhancement
 Mode: afk
 ---
+
+> **Done** — shipped as the tracer bullet in `/build` (slice 05): `ScoreEvent` +
+> `scoringService` + the reply path + a score badge + a score-sorted list.
 
 # 001 · reply → award → badge (tracer bullet)
 

@@ -1,8 +1,4 @@
 // Relay CRM — core domain types.
-//
-// NOTE FOR THE CLASS: there is deliberately NO score, tier, or ScoreEvent here
-// yet. Lead Scoring is the feature you build during the session. These are the
-// concepts the brief starts from.
 
 export type LeadStatus = 'new' | 'working' | 'qualified'
 
@@ -32,5 +28,16 @@ export interface Activity {
   id: string
   leadId: string
   kind: ActivityKind
+  at: string // ISO
+}
+
+/** An immutable record that a lead's score changed by `delta`, for a `reason`
+ *  (the ActivityKind that earned it), at a time. The ledger: a lead's Score is
+ *  the running sum of its ScoreEvents (ADR 0002 — event-sourced, no stored total). */
+export interface ScoreEvent {
+  id: string
+  leadId: string
+  delta: number
+  reason: ActivityKind // 'decay' is added when slice 003 lands
   at: string // ISO
 }

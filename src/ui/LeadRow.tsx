@@ -3,11 +3,13 @@ import { initials, relativeTime, statusLabel } from './format'
 
 export function LeadRow({
   lead,
+  score,
   selected,
   onSelect,
   onLogReply,
 }: {
   lead: Lead
+  score: number
   selected: boolean
   onSelect: (id: string) => void
   onLogReply: (id: string) => void
@@ -27,8 +29,9 @@ export function LeadRow({
         <span className={`status status-${lead.status}`}>{statusLabel[lead.status]}</span>
       </td>
       <td className="muted">{lead.owner}</td>
-      {/* NOTE FOR THE CLASS: today there's no "worth" column — only recency.
-          The score / tier badge you build goes here, and the list re-sorts by it. */}
+      <td className="cell-score">
+        <span className="score-badge">{score}</span>
+      </td>
       <td className="muted">{relativeTime(lead.lastActivityAt)}</td>
       <td className="cell-action">
         <button
