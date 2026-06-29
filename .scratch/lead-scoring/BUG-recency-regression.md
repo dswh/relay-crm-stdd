@@ -1,7 +1,12 @@
 ---
-Status: needs-triage
+Status: done
 Type: bug
 ---
+
+> **Fixed** via `/diagnose`. Phase 1 was the whole game: a failing test pinning the
+> exact symptom (hot+stale vs fresh+cold). Cause: `listLeads`'s comparator had
+> recency primary, score secondary. Fix: score primary again. Regression test added
+> in `leadService.test.ts` so it can't silently come back.
 
 # BUG · a hot lead dropped below a fresh cold one
 

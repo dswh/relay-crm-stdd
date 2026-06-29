@@ -1,10 +1,9 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Side-demo 08 · /diagnose — a bug has been planted
-> Symptom (`.scratch/lead-scoring/BUG-recency-regression.md`): a hot lead dropped below a fresh, cold one. The existing tests are green — they don't see it.
+> ### ✅ Side-demo 08 done · /diagnose
+> Loop-first fix: a regression test pins "a hot, stale lead outranks a fresh, cold one"; the comparator is score-primary again. 8 tests green.
 >
-> **▶ Do now:** run **`/diagnose`** — build a failing test that reproduces the *exact* symptom first, then fix.
-> **✓ Compare / recover:** `git diff 08_begin..08_end` · or `git checkout 08_end` (8 tests).
+> **↩ Try it yourself:** `git checkout 08_begin`.
 > _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.

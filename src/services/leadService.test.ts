@@ -22,6 +22,19 @@ describe('leadService.listLeads', () => {
     expect(service.listLeads().map((l) => l.id)).toEqual(['high', 'mid', 'low'])
   })
 
+  // Regression for the recency-over-score bug: this is the feedback loop /diagnose
+  // built — it fails on the swapped comparator and passes once score is primary again.
+  it('ranks a hot but stale lead above a fresh but cold one (worth beats recency)', () => {
+    const repo = makeTestRepo([
+      { id: 'hot_stale', lastActivityAt: '2026-06-01T09:00:00.000Z' }, // old activity, high score
+      { id: 'fresh_cold', lastActivityAt: '2026-06-20T09:00:00.000Z' }, // recent activity, no score
+    ])
+    repo.recordScoreEvent({ leadId: 'hot_stale', delta: 20, reason: 'email_reply' })
+    const { service } = services(repo)
+
+    expect(service.listLeads().map((l) => l.id)).toEqual(['hot_stale', 'fresh_cold'])
+  })
+
   it('breaks ties on equal score by recency, then name', () => {
     const repo = makeTestRepo([
       { id: 'b', name: 'Bravo', lastActivityAt: '2026-06-10T09:00:00.000Z' },

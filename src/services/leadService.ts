@@ -20,10 +20,10 @@ export function createLeadService(repo: LeadRepo, scoring: ScoringService) {
       const leads = repo.getLeads()
       const score = new Map(leads.map((l) => [l.id, scoring.getScore(l.id)]))
       return leads.sort((a, b) => {
-        const byRecency = b.lastActivityAt.localeCompare(a.lastActivityAt)
-        if (byRecency !== 0) return byRecency
         const byScore = (score.get(b.id) ?? 0) - (score.get(a.id) ?? 0)
-        return byScore !== 0 ? byScore : a.name.localeCompare(b.name)
+        if (byScore !== 0) return byScore
+        const byRecency = b.lastActivityAt.localeCompare(a.lastActivityAt)
+        return byRecency !== 0 ? byRecency : a.name.localeCompare(b.name)
       })
     },
 
