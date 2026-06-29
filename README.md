@@ -1,13 +1,11 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 7 · Main line complete 🎉
-> Lead Scoring is shipped, reviewed, and deep. Four **side-demos** branch off from here:
+> ### 📍 Side-demo 08 · /diagnose — a bug has been planted
+> Symptom (`.scratch/lead-scoring/BUG-recency-regression.md`): a hot lead dropped below a fresh, cold one. The existing tests are green — they don't see it.
 >
-> - **`08_begin`** → `/diagnose` (a planted bug) · **`09_begin`** → `/triage` (a messy inbox)
-> - **`10_begin`** → `/afk` (the night shift) · **`11_begin`** → `/swarm` (parallel build)
->
-> **▶ Pick one:** e.g. `git checkout 08_begin`.
-> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+> **▶ Do now:** run **`/diagnose`** — build a failing test that reproduces the *exact* symptom first, then fix.
+> **✓ Compare / recover:** `git diff 08_begin..08_end` · or `git checkout 08_end` (8 tests).
+> _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
 Clone it, run it, and build alongside the instructor using the STDD skills that
