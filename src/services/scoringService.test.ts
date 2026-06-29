@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { makeTestRepo } from '../test/makeTestRepo'
-import { createScoringService } from './scoringService'
+import { createScoringService, tierOf } from './scoringService'
 import { createLeadService } from './leadService'
 
 // Behaviour through the LeadRepo / service interface — nothing about how score is
@@ -31,6 +31,26 @@ describe('scoringService', () => {
     const scoring = createScoringService(repo)
 
     expect(scoring.getScore('quiet')).toBe(0)
+  })
+
+  // Slice 002 — tiers are a view of the score, pinned at the launch thresholds.
+  it('derives the tier from the score at the launch thresholds', () => {
+    expect(tierOf(20)).toBe('hot') // hot ≥ 20
+    expect(tierOf(19)).toBe('warm')
+    expect(tierOf(8)).toBe('warm') // warm 8–19
+    expect(tierOf(7)).toBe('cold')
+    expect(tierOf(0)).toBe('cold') // cold < 8
+  })
+
+  it('reports a lead tier through the service', () => {
+    const repo = makeTestRepo([{ id: 'lead1' }])
+    const scoring = createScoringService(repo)
+
+    expect(scoring.getTier('lead1')).toBe('cold')
+    scoring.recordReply('lead1') // +10
+    expect(scoring.getTier('lead1')).toBe('warm')
+    scoring.recordReply('lead1') // +10 → 20
+    expect(scoring.getTier('lead1')).toBe('hot')
   })
 
   // The tracer bullet, end to end: a reply awards score AND the lead climbs the list.

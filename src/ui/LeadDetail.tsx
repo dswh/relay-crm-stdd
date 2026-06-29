@@ -1,12 +1,17 @@
 import type { Activity, Lead } from '../domain/types'
-import { activityLabel, initials, relativeTime, statusLabel } from './format'
+import type { Tier } from '../services/scoringService'
+import { activityLabel, initials, relativeTime, statusLabel, tierLabel } from './format'
 
 export function LeadDetail({
   lead,
+  score,
+  tier,
   activities,
   onClose,
 }: {
   lead: Lead
+  score: number
+  tier: Tier
   activities: Activity[]
   onClose: () => void
 }) {
@@ -22,12 +27,12 @@ export function LeadDetail({
           <p className="muted">
             {lead.title} · {lead.company}
           </p>
+          <p className="detail-tier">
+            <span className={`tier-badge tier-${tier}`}>{tierLabel[tier]}</span>
+            <span className="score-num muted">score {score}</span>
+          </p>
         </div>
       </div>
-
-      {/* NOTE FOR THE CLASS: this header is the other place the brief mentions a
-          score could live ("list badge / detail header"). A `/spike` can help
-          you decide which placement reads as "call this one first." */}
 
       <dl className="detail-meta">
         <div><dt>Status</dt><dd><span className={`status status-${lead.status}`}>{statusLabel[lead.status]}</span></dd></div>
