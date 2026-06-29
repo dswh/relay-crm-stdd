@@ -1,11 +1,12 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 6 · Reviewed — keep it deep
-> The must-fix is applied; one finding became issue 005.
+> ### 📍 Checkpoint 7 · Main line complete 🎉
+> Lead Scoring is shipped, reviewed, and deep. Four **side-demos** branch off from here:
 >
-> **▶ Do now:** run **`/sweep`** for deepening candidates, then **`/deepen`** the one you pick (unify the reply path into one module).
-> **✓ Compare / recover:** `git diff 07_begin..07_end` · or `git checkout 07_end`.
+> - **`08_begin`** → `/diagnose` (a planted bug) · **`09_begin`** → `/triage` (a messy inbox)
+> - **`10_begin`** → `/afk` (the night shift) · **`11_begin`** → `/swarm` (parallel build)
 >
+> **▶ Pick one:** e.g. `git checkout 08_begin`.
 > _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.

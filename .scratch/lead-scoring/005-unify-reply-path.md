@@ -1,8 +1,12 @@
 ---
-Status: ready-for-agent
+Status: done
 Type: enhancement
 Mode: afk
 ---
+
+> **Done** — resolved by `/deepen` in slice 07. `leadService.logReply` is now the
+> single reply path (activity + score); score reads route through `scoringService`.
+> See `.scratch/lead-scoring/SWEEP-001.md`.
 
 # 005 · unify the reply path (review finding)
 

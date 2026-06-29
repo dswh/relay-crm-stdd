@@ -8,8 +8,8 @@ import { LeadDetail } from './ui/LeadDetail'
 export default function App() {
   // One in-memory repo for the session; a `tick` forces a re-read after writes.
   const repoRef = useRef(seededRepo())
-  const service = useMemo(() => createLeadService(repoRef.current), [])
   const scoring = useMemo(() => createScoringService(repoRef.current), [])
+  const service = useMemo(() => createLeadService(repoRef.current, scoring), [scoring])
   const [, setTick] = useState(0)
   const refresh = () => setTick((t) => t + 1)
 
@@ -49,9 +49,8 @@ export default function App() {
             selectedId={selectedId}
             onSelect={setSelectedId}
             onLogReply={(id) => {
-              // the reply path: record the activity AND award score
+              // one reply path: logReply records the activity and awards score
               service.logReply(id)
-              scoring.recordReply(id)
               refresh()
             }}
           />

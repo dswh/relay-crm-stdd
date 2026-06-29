@@ -36,8 +36,8 @@ describe('scoringService', () => {
   // The tracer bullet, end to end: a reply awards score AND the lead climbs the list.
   it('a lead that replies rises to the top of the list', () => {
     const repo = makeTestRepo([{ id: 'a' }, { id: 'b' }])
-    const leads = createLeadService(repo)
     const scoring = createScoringService(repo)
+    const leads = createLeadService(repo, scoring)
 
     // both start at score 0 — tie breaks by name, so 'a' is first
     expect(leads.listLeads()[0].id).toBe('a')
