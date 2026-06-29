@@ -1,13 +1,11 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 7 · Main line complete 🎉
-> Lead Scoring is shipped, reviewed, and deep. Four **side-demos** branch off from here:
+> ### 📍 Side-demo 09 · /triage — a messy inbox
+> Three raw requests landed in `.scratch/inbox/` (a feature ask, a near-duplicate, an override request).
 >
-> - **`08_begin`** → `/diagnose` (a planted bug) · **`09_begin`** → `/triage` (a messy inbox)
-> - **`10_begin`** → `/afk` (the night shift) · **`11_begin`** → `/swarm` (parallel build)
->
-> **▶ Pick one:** e.g. `git checkout 08_begin`.
-> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+> **▶ Do now:** run **`/triage`** — categorise, set a state, write agent-ready briefs; send rejects to `.out-of-scope/`. Don't touch the `/slice` issues.
+> **✓ Compare / recover:** `git diff 09_begin..09_end` · or `git checkout 09_end`.
+> _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
 Clone it, run it, and build alongside the instructor using the STDD skills that
