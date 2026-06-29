@@ -1,12 +1,9 @@
 # Relay CRM — STDD master-class starter
 
-> ### 📍 Checkpoint 1 · Setup done — time to Align
-> The repo is configured (tracker, labels, domain docs). You have one messy brief and no plan.
+> ### 📍 Start here — self-paced STDD walkthrough
+> This is the **starter**: the feature isn't built yet. Each skill showcase is a pair of branches `NN_begin` → `NN_end`. Begin with **`git checkout 00_begin`** and follow the "📍 You are here" block at the top of each branch's README.
 >
-> **▶ Do now:** read **[`BRIEF.md`](./BRIEF.md)**, then run **`/align`** — let it interview you to a shared design concept (it grows `CONTEXT.md` and writes ADRs as you go).
-> **✓ Compare / recover:** `git diff 01_begin..01_end` · or `git checkout 01_end`.
->
-> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+> _Full map of all 12 checkpoints → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
 
 A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
 Clone it, run it, and build alongside the instructor using the STDD skills that
