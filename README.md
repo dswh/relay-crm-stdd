@@ -50,6 +50,3 @@ There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the fea
 `align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
 `deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
 `swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
