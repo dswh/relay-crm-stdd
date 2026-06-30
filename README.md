@@ -1,56 +1,18 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 06 complete: Slice reviewed
 
-> ### 📍 Checkpoint 6 · Reviewed — keep it deep
-> The must-fix is applied; one finding became issue 005.
->
-> **▶ Do now:** run **`/sweep`** for deepening candidates, then **`/deepen`** the one you pick (unify the reply path into one module).
-> **✓ Compare / recover:** `git diff 07_begin..07_end` · or `git checkout 07_end`.
->
-> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM we add a **Lead Scoring** feature to, one stage at a time. You
+are on **`06_end`** — the finished version of stage 06 (`/review`).
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+## What this stage produced
+- The must-fix applied in `src/services/leadService.ts` (the quadratic re-sort is gone).
+- A review record: `.scratch/lead-scoring/REVIEW-001.md`.
+- A follow-up issue filed: `.scratch/lead-scoring/005-unify-reply-path.md`.
+- Tests still green: **7 tests pass**.
 
-```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
-```
+## What to do next
+- Deepen the code and unify the reply path:
+  ```bash
+  git checkout 07_begin
+  ```
 
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-Everything you need is already wired (`/setup` has been run): the issue tracker
-(local markdown in `.scratch/`), the triage labels, and the domain docs
-(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+See `DEMO-BRANCHES.md` for the full map of every stage.
