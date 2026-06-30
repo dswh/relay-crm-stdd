@@ -1,57 +1,44 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 02: Spike an open question (side-trip)
 
-> ### 📍 Checkpoint 2 · Aligned — write the spec
-> `CONTEXT.md` is grown and the ADRs are written. The alignment is the asset; the doc just records it.
->
-> **▶ Do now:** run **`/write-spec`** to synthesise the thread into a PRD (no re-interview).
-> **↪ Optional detour:** if a question needs runnable proof, `/spike` it — see branch **`02_end`**.
-> **✓ Compare / recover:** `git diff 03_begin..03_end` · or `git checkout 03_end`.
->
-> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM. Across this class we add a **Lead Scoring** feature to it, one
+stage at a time. Every stage has two branches: `NN_begin` (before the step) and
+`NN_end` (after). You are on **`02_begin`**.
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+> This stage is a **side-trip** off the main line (it branches from `01_end`). Take
+> it when one decision is too fuzzy to write into a spec without proof. Then return
+> to stage 03.
 
+## 1. Where you are right now
+- You are aligned: `CONTEXT.md` is grown and the ADRs are written.
+- One question is still fuzzy: **how exactly should tier + decay behave over time** (when does a lead move hot → warm → cold)?
+- You don't want to write that into the spec until you've seen it actually run.
+
+## 2. The problem to solve next
+- Answer that one open question with a small, **throwaway** experiment you can run.
+- The goal is a decision you trust — the code is disposable, the learning is the asset.
+
+## 3. The command to run
+```
+/spike
+```
+(You can also reach it through `/handoff`, which packages the question for a fresh agent.)
+
+## 4. Steps to follow
+1. Run `/spike` and point it at the open question (the tier + decay state machine).
+2. Let it build a tiny runnable script that models the behaviour.
+3. Run the script, read the results, and decide.
+4. Write the **decision** down (it feeds the spec / ADR). Throw the code away.
+
+## 5. What you should see (expected output)
+- A `spike/` folder with throwaway artifacts:
+  - `spike/score-state-machine.mjs` — the small runnable experiment
+  - `spike/NOTES.md` — what you learned
+  - `spike/HANDOFF.md` — the question and the answer, ready to fold back in
+- No production code changes. The spike is meant to be deleted later.
+
+## 6. End state — how to check
 ```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
+git diff 02_begin..02_end     # the exact changes this stage should produce
+git checkout 02_end           # jump straight to the finished version if you get stuck
 ```
-
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-Everything you need is already wired (`/setup` has been run): the issue tracker
-(local markdown in `.scratch/`), the triage labels, and the domain docs
-(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+When the stage is done, the open question is settled. Return to the main line at stage 03 (`/write-spec`).
