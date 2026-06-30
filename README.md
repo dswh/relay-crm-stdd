@@ -1,55 +1,45 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 11: Build in parallel (side-demo)
 
-> ### 📍 Side-demo 11 · /swarm — fan out in parallel
-> The wave plan (`.scratch/lead-scoring/SWARM-PLAN.md`) is set: tiers (002) ∥ decay (003), independent slices.
->
-> **▶ Do now:** run the **`/swarm`** pipeline (`scripts/parallel-run.ts`) — a git worktree per issue, implement → review → merge.
-> **✓ Compare / recover:** `git diff 11_begin..11_end` · or `git checkout 11_end` (13 tests). Wave branches: `relay/002-tiers`, `relay/003-decay`.
-> _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM. Across this class we add a **Lead Scoring** feature to it, one
+stage at a time. Every stage has two branches: `NN_begin` (before the step) and
+`NN_end` (after). You are on **`11_begin`**.
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+> This is a **side-demo** built on the finished feature (`07_end`) plus a wave plan.
 
+## 1. Where you are right now
+- You are on the working scoring code from stage 07.
+- The wave plan is set in `.scratch/lead-scoring/SWARM-PLAN.md`: build **tiers (002)** and **decay (003)** at the same time. They are independent slices that don't touch the same files.
+
+## 2. The problem to solve next
+- Two independent slices done one after the other is slower than it needs to be.
+- Your job is to **build both at once** — each in its own isolated git worktree — then merge them back together.
+
+## 3. The command to run
+```
+scripts/parallel-run.ts
+```
+This runs the `/swarm` pipeline: a worktree per issue, implement → review → merge.
+
+## 4. Steps to follow
+1. Run the swarm pipeline (`scripts/parallel-run.ts`).
+2. It creates one git worktree per issue so the two builds never collide.
+3. Each issue is implemented and reviewed in its own worktree.
+4. The pipeline merges both back into this branch.
+
+## 5. What you should see (expected output)
+- **Tiers (002)** and **decay (003)** both built and merged:
+  - `src/services/decayService.ts` (+ `decayService.test.ts`)
+  - tier logic in `src/services/scoringService.ts` (+ tests) and the tier badge in `src/ui/`
+- Both issues marked done; two wave branches kept as `relay/002-tiers` and `relay/003-decay`.
+- `npm test` →
+  ```
+   Test Files  3 passed (3)
+        Tests  13 passed (13)
+  ```
+
+## 6. End state — how to check
 ```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
+git diff 11_begin..11_end     # the exact changes this stage should produce
+git checkout 11_end           # jump straight to the finished version if you get stuck
 ```
-
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-Everything you need is already wired (`/setup` has been run): the issue tracker
-(local markdown in `.scratch/`), the triage labels, and the domain docs
-(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+When the stage is done, both slices are built in parallel and merged — 13 green tests.
