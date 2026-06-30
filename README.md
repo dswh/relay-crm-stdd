@@ -1,55 +1,43 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 09: Triage the inbox (side-demo)
 
-> ### 📍 Side-demo 09 · /triage — a messy inbox
-> Three raw requests landed in `.scratch/inbox/` (a feature ask, a near-duplicate, an override request).
->
-> **▶ Do now:** run **`/triage`** — categorise, set a state, write agent-ready briefs; send rejects to `.out-of-scope/`. Don't touch the `/slice` issues.
-> **✓ Compare / recover:** `git diff 09_begin..09_end` · or `git checkout 09_end`.
-> _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM. Across this class we add a **Lead Scoring** feature to it, one
+stage at a time. Every stage has two branches: `NN_begin` (before the step) and
+`NN_end` (after). You are on **`09_begin`**.
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+> This is a **side-demo** built on the finished feature (`07_end`) plus a raw inbox.
 
+## 1. Where you are right now
+- You are on the working scoring code from stage 07.
+- Three raw requests have landed in `.scratch/inbox/`:
+  - a new feature ask (a weekly digest),
+  - a near-duplicate of work you've already planned,
+  - a manual tier-override request.
+- They are unsorted and not ready for anyone to build.
+
+## 2. The problem to solve next
+- A messy inbox stalls the team.
+- Your job is to **triage** each request: decide what's in and what's out, and turn the accepted ones into agent-ready briefs.
+
+## 3. The command to run
+```
+/triage
+```
+
+## 4. Steps to follow
+1. Run `/triage`.
+2. For each inbox item: categorise it and set a state.
+3. Write a clear, agent-ready brief for what you accept.
+4. Send rejected items to `.out-of-scope/` with a reason. **Don't touch the existing `/slice` issues (001–005).**
+
+## 5. What you should see (expected output)
+- One accepted, agent-ready issue: `.scratch/lead-scoring/006-weekly-digest.md`.
+- A rejected request moved out: `.out-of-scope/manual-tier-override.md` (with the reason).
+- The near-duplicate resolved against the existing plan; the inbox cleared.
+- No application code changes — this stage is about sorting work, not building it.
+
+## 6. End state — how to check
 ```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
+git diff 09_begin..09_end     # the exact changes this stage should produce
+git checkout 09_end           # jump straight to the finished version if you get stuck
 ```
-
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-Everything you need is already wired (`/setup` has been run): the issue tracker
-(local markdown in `.scratch/`), the triage labels, and the domain docs
-(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+When the stage is done, the inbox is empty: in-scope work is briefed and out-of-scope work is parked with a reason.
