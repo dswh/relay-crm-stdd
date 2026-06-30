@@ -1,55 +1,44 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 08: Diagnose a bug (side-demo)
 
-> ### 📍 Side-demo 08 · /diagnose — a bug has been planted
-> Symptom (`.scratch/lead-scoring/BUG-recency-regression.md`): a hot lead dropped below a fresh, cold one. The existing tests are green — they don't see it.
->
-> **▶ Do now:** run **`/diagnose`** — build a failing test that reproduces the *exact* symptom first, then fix.
-> **✓ Compare / recover:** `git diff 08_begin..08_end` · or `git checkout 08_end` (8 tests).
-> _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM. Across this class we add a **Lead Scoring** feature to it, one
+stage at a time. Every stage has two branches: `NN_begin` (before the step) and
+`NN_end` (after). You are on **`08_begin`**.
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+> This is a **side-demo** built on the finished feature (`07_end`) plus one planted bug.
 
+## 1. Where you are right now
+- You are on the working, unified scoring code from stage 07.
+- A bug has been **planted**. The symptom is written up in `.scratch/lead-scoring/BUG-recency-regression.md`: a hot lead dropped *below* a fresh, cold one.
+- The 7 existing tests are all green — they do **not** catch this bug.
+
+## 2. The problem to solve next
+- Don't jump straight to a fix.
+- Your job is to **reproduce the exact symptom with a failing test first**, then make that test pass.
+
+## 3. The command to run
+```
+/diagnose
+```
+
+## 4. Steps to follow
+1. Read the symptom in `.scratch/lead-scoring/BUG-recency-regression.md`.
+2. Run `/diagnose`.
+3. It writes a new test that fails **for the same reason** the bug happens (red).
+4. It fixes the code so that test (and all the others) pass (green).
+
+## 5. What you should see (expected output)
+- A new test added to `src/services/leadService.test.ts` that reproduces the regression.
+- A fix in `src/services/leadService.ts`.
+- The bug write-up updated with the diagnosis.
+- `npm test` →
+  ```
+   Test Files  2 passed (2)
+        Tests  8 passed (8)
+  ```
+
+## 6. End state — how to check
 ```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
+git diff 08_begin..08_end     # the exact changes this stage should produce
+git checkout 08_end           # jump straight to the finished version if you get stuck
 ```
-
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-Everything you need is already wired (`/setup` has been run): the issue tracker
-(local markdown in `.scratch/`), the triage labels, and the domain docs
-(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+When the stage is done, the bug is reproduced, fixed, and locked in by a test — 8 green tests.
