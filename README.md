@@ -1,55 +1,43 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 10: Run the agent unattended (side-demo)
 
-> ### 📍 Side-demo 10 · /afk — the night shift
-> The afk harness is wired (`scripts/`) and the backlog (002–004) is sharp.
->
-> **▶ Do now:** run **`./scripts/run-once.sh`** — one autonomous pass picks the next afk issue, builds it test-first, commits. Watch it; sandbox before looping.
-> **✓ Compare / recover:** `git diff 10_begin..10_end` · or `git checkout 10_end` (9 tests).
-> _Map → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM. Across this class we add a **Lead Scoring** feature to it, one
+stage at a time. Every stage has two branches: `NN_begin` (before the step) and
+`NN_end` (after). You are on **`10_begin`**.
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+> This is a **side-demo** built on the finished feature (`07_end`) plus an "afk" harness.
 
+## 1. Where you are right now
+- You are on the working scoring code from stage 07.
+- The **afk** (away-from-keyboard) harness is wired up in `scripts/`.
+- The backlog (issues 002–004) is sharp and ready to build.
+
+## 2. The problem to solve next
+- You want the agent to build the next issue **on its own**, while you watch.
+- Your job is to run one autonomous pass and check it did the right thing.
+
+## 3. The command to run
+```
+./scripts/run-once.sh
+```
+
+## 4. Steps to follow
+1. Run `./scripts/run-once.sh` — one pass picks the next afk issue, builds it test-first, and commits.
+2. **Watch** the run; don't walk away on the first try.
+3. Sandbox the run before you ever loop it.
+4. Review the commit it produced.
+
+## 5. What you should see (expected output)
+- Issue **002 (tiers)** built autonomously: hot / warm / cold tier logic in `src/services/scoringService.ts` (+ tests), with a tier badge in the UI (`src/ui/`, `src/index.css`, `src/ui/format.ts`).
+- `002-tiers.md` marked done.
+- `npm test` →
+  ```
+   Test Files  2 passed (2)
+        Tests  9 passed (9)
+  ```
+
+## 6. End state — how to check
 ```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
+git diff 10_begin..10_end     # the exact changes this stage should produce
+git checkout 10_end           # jump straight to the finished version if you get stuck
 ```
-
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-Everything you need is already wired (`/setup` has been run): the issue tracker
-(local markdown in `.scratch/`), the triage labels, and the domain docs
-(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+When the stage is done, the agent has built and committed the tiers issue by itself — 9 green tests.
