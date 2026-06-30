@@ -1,56 +1,43 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 05: Build the tracer bullet
 
-> ### 📍 Checkpoint 4 · Sliced — build the tracer bullet
-> Issues 001–004 form a DAG. 001 is the thinnest path through every layer.
->
-> **▶ Do now:** in a fresh context, run **`/build .scratch/lead-scoring/001-reply-award-badge.md`** with **`/tdd`** — one behaviour at a time, red → green.
-> **✓ Compare / recover:** `git diff 05_begin..05_end` · or `git checkout 05_end` (7 tests green).
->
-> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM. Across this class we add a **Lead Scoring** feature to it, one
+stage at a time. Every stage has two branches: `NN_begin` (before the step) and
+`NN_end` (after). You are on **`05_begin`**.
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+## 1. Where you are right now
+- The work is sliced into issues 001–004.
+- **Nothing is built yet** — there is still no score, no badge. The list is sorted only by recency.
 
+## 2. The problem to solve next
+- Build issue **001**, the *tracer bullet*: the thinnest path that touches every layer at once.
+- The behaviour: **a lead replies to an email → a score is awarded → a badge shows on the lead list → the list sorts by score.**
+
+## 3. The command to run
+```
+/build .scratch/lead-scoring/001-reply-award-badge.md
+```
+Drive it with `/tdd` — build one behaviour at a time, red → green.
+
+## 4. Steps to follow
+1. Start in a **fresh context** so the agent only sees this one issue.
+2. Run the `/build` command above.
+3. For each behaviour: write a failing test (red), make it pass (green), repeat.
+4. Run `npm test` and `npm run typecheck` to confirm green.
+
+## 5. What you should see (expected output)
+- New service `src/services/scoringService.ts` with `src/services/scoringService.test.ts`.
+- A `ScoreEvent` type and updated repo (`src/domain/types.ts`, `src/domain/leadRepo.ts`).
+- `leadService` now sorts **by score**, not recency.
+- A score badge in the UI (`src/ui/LeadRow.tsx`, `LeadList.tsx`, `index.css`) and a "Log reply" action in `src/App.tsx`.
+- `npm test` →
+  ```
+   Test Files  2 passed (2)
+        Tests  7 passed (7)
+  ```
+
+## 6. End state — how to check
 ```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
+git diff 05_begin..05_end     # the exact changes this stage should produce
+git checkout 05_end           # jump straight to the finished version if you get stuck
 ```
-
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-Everything you need is already wired (`/setup` has been run): the issue tracker
-(local markdown in `.scratch/`), the triage labels, and the domain docs
-(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+When the stage is done, the feature works end to end with 7 green tests. Continue with stage 06 (`/review`).
