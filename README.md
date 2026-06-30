@@ -1,57 +1,18 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 01 complete: Aligned on the design
 
-> ### 📍 Checkpoint 2 · Aligned — write the spec
-> `CONTEXT.md` is grown and the ADRs are written. The alignment is the asset; the doc just records it.
->
-> **▶ Do now:** run **`/write-spec`** to synthesise the thread into a PRD (no re-interview).
-> **↪ Optional detour:** if a question needs runnable proof, `/spike` it — see branch **`02_end`**.
-> **✓ Compare / recover:** `git diff 03_begin..03_end` · or `git checkout 03_end`.
->
-> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM we add a **Lead Scoring** feature to, one stage at a time. You
+are on **`01_end`** — the finished version of stage 01 (`/align`).
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+## What this stage produced
+- `CONTEXT.md` (the glossary) grown with the agreed terms (score, tier, etc.).
+- Two decision records: `docs/adr/0001-realtime-vs-nightly-scoring.md` and `docs/adr/0002-event-sourced-score.md`.
+- Still no application code — alignment produces decisions, not code.
 
-```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
-```
+## What to do next
+- Turn the decisions into a single spec:
+  ```bash
+  git checkout 03_begin
+  ```
+- Optional: if one decision still feels too fuzzy to spec, take the spike side-trip first (`git checkout 02_begin`).
 
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-Everything you need is already wired (`/setup` has been run): the issue tracker
-(local markdown in `.scratch/`), the triage labels, and the domain docs
-(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+See `DEMO-BRANCHES.md` for the full map of every stage.
