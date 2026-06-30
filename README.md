@@ -1,56 +1,39 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 01: Align on the design
 
-> ### 📍 Checkpoint 1 · Setup done — time to Align
-> The repo is configured (tracker, labels, domain docs). You have one messy brief and no plan.
->
-> **▶ Do now:** read **[`BRIEF.md`](./BRIEF.md)**, then run **`/align`** — let it interview you to a shared design concept (it grows `CONTEXT.md` and writes ADRs as you go).
-> **✓ Compare / recover:** `git diff 01_begin..01_end` · or `git checkout 01_end`.
->
-> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM. Across this class we add a **Lead Scoring** feature to it, one
+stage at a time. Every stage has two branches: `NN_begin` (before the step) and
+`NN_end` (after). You are on **`01_begin`**.
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+## 1. Where you are right now
+- The repo is set up: the issue tracker, triage labels, and agent docs all exist.
+- You have one thing to start from: a short, messy brief in `BRIEF.md` (a real Slack message asking for "lead scoring").
+- You have **no plan and no code** for the feature yet.
 
+## 2. The problem to solve next
+- The brief is vague. It hides a dozen decisions (which signals score, how much, real-time or nightly, where the score shows, decay, tiers, manual override).
+- Your job is to **turn the brief into a shared design concept** — surface those decisions and agree on answers. Do **not** start coding.
+
+## 3. The command to run
+```
+/align add lead scoring (use BRIEF.md)
+```
+
+## 4. Steps to follow
+1. Read `BRIEF.md` first.
+2. Run the `/align` command above.
+3. Answer its interview questions one at a time — it drives out the hidden decisions.
+4. As you go, it grows the domain glossary and records each decision as an ADR.
+
+## 5. What you should see (expected output)
+- `CONTEXT.md` (the glossary) is **grown** with the new terms you agreed on (score, tier, etc.).
+- Two new decision records:
+  - `docs/adr/0001-realtime-vs-nightly-scoring.md`
+  - `docs/adr/0002-event-sourced-score.md`
+- **Still no application code** — alignment produces decisions, not code.
+
+## 6. End state — how to check
 ```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
+git diff 01_begin..01_end     # the exact changes this stage should produce
+git checkout 01_end           # jump straight to the finished version if you get stuck
 ```
-
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-Everything you need is already wired (`/setup` has been run): the issue tracker
-(local markdown in `.scratch/`), the triage labels, and the domain docs
-(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+When the stage is done, the design is agreed and written down. Continue with stage 03 (`/write-spec`). Stage 02 is an optional `/spike` side-trip you can take first.
