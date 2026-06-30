@@ -11,8 +11,9 @@ Start by reading [`BRIEF.md`](./BRIEF.md), then run `/align`.
 This repo is pre-configured for the STDD skills (`/setup` has already been run).
 
 ### Issue tracker
-Issues live as **local markdown** under `.scratch/<feature>/NNN-title.md` (no
-GitHub needed — clone and go). See `docs/agents/issue-tracker.md`.
+Linear (team Agentiwise, project Relay · Lead Scoring) — the skills create and move
+issues via the Linear MCP. See `docs/agents/issue-tracker.md`. Domain docs
+(`CONTEXT.md`, `docs/adr/`) stay as repo files; only issues and the PRD live in Linear.
 
 ### Triage labels
 The five canonical triage roles map to their own names (`needs-triage`,
