@@ -1,56 +1,42 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 07: Deepen the code
 
-> ### 📍 Checkpoint 6 · Reviewed — keep it deep
-> The must-fix is applied; one finding became issue 005.
->
-> **▶ Do now:** run **`/sweep`** for deepening candidates, then **`/deepen`** the one you pick (unify the reply path into one module).
-> **✓ Compare / recover:** `git diff 07_begin..07_end` · or `git checkout 07_end`.
->
-> _Map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM. Across this class we add a **Lead Scoring** feature to it, one
+stage at a time. Every stage has two branches: `NN_begin` (before the step) and
+`NN_end` (after). You are on **`07_begin`**.
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+## 1. Where you are right now
+- The slice has been reviewed and the must-fix is applied.
+- One review finding became issue **005**: the "a lead replied" logic is duplicated in two places.
+- 7 tests pass.
 
+## 2. The problem to solve next
+- Duplicated logic drifts apart over time.
+- Your job is to find the highest-value place to improve, then **unify the reply path into one scoring module** so there is a single source of truth.
+
+## 3. The command to run
+```
+/sweep
+```
+Then deepen the candidate you pick:
+```
+/deepen
+```
+
+## 4. Steps to follow
+1. Run `/sweep` to list good "deepening" candidates across the code.
+2. Pick the one worth doing now (issue 005, the duplicated reply path).
+3. Run `/deepen` on it — pull the logic into one module and route both callers through it.
+4. Run `npm test` to confirm nothing broke.
+
+## 5. What you should see (expected output)
+- The reply path is unified through `src/services/scoringService.ts` (callers in `src/services/leadService.ts` and `src/App.tsx` updated).
+- A sweep record: `.scratch/lead-scoring/SWEEP-001.md`.
+- Issue `005-unify-reply-path.md` marked done.
+- Tests updated and still green (7 tests).
+
+## 6. End state — how to check
 ```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
+git diff 07_begin..07_end     # the exact changes this stage should produce
+git checkout 07_end           # jump straight to the finished version if you get stuck
 ```
-
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-Everything you need is already wired (`/setup` has been run): the issue tracker
-(local markdown in `.scratch/`), the triage labels, and the domain docs
-(`CONTEXT.md`, `docs/adr/`). Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+When the stage is done, the scoring logic lives in one clean module. This is the jumping-off point for the side-demos: stage 08 (`/diagnose`), 09 (`/triage`), 10 (`/afk`), 11 (`/swarm`).
