@@ -1,56 +1,47 @@
-# Relay CRM — STDD master-class starter
+# Relay CRM — Stage 00: Set up the repo
 
-> ### 📍 Checkpoint 0 · You just cloned the repo
-> The STDD skills are installed but the repo **isn't configured** yet.
->
-> **▶ Do now:** run **`/setup`** (wire up the issue tracker, triage labels, domain docs), then **`/ask`** to see the flow.
-> **✓ Compare / recover:** `git diff 00_begin..00_end` · or `git checkout 00_end`.
->
-> _Self-paced map of every step → [`DEMO-BRANCHES.md`](./DEMO-BRANCHES.md)._
+Relay is a tiny CRM. Across this class we add a **Lead Scoring** feature to it, one
+stage at a time. Every stage has two branches: `NN_begin` (the state *before* the
+step) and `NN_end` (the state *after*). You are on **`00_begin`**.
 
-A tiny CRM, and the repo we build **Lead Scoring** into, live, during the class.
-Clone it, run it, and build alongside the instructor using the STDD skills that
-ship in this repo.
+## 1. Where you are right now
+- You have just cloned the repo.
+- The STDD skills are installed (in `.claude/skills/`) but the repo is **not set up** for them yet.
+- There is no issue tracker, no triage labels, and no agent docs.
+- The app runs and the existing tests pass (3 service tests).
 
+## 2. The problem to solve next
+- The other skills expect a few things to exist first: a place to track issues, a set of triage labels, and domain docs.
+- Your job in this stage is to **configure the repo** so those skills have what they need.
+
+## 3. The command to run
+```
+/setup
+```
+Then, to see how the whole flow works:
+```
+/ask
+```
+
+> First time in the repo, run this once: `npm install`. Then confirm the baseline is green with `npm test` (you should see **3 tests pass**).
+
+## 4. Steps to follow
+1. Run `npm install`.
+2. Run `npm test` and confirm 3 tests pass.
+3. Run `/setup` — it wires up the issue tracker, the triage labels, and the agent docs.
+4. Run `/ask` to get a tour of the flow you are about to follow.
+
+## 5. What you should see (expected output)
+- A new folder `docs/agents/` with three files:
+  - `docs/agents/domain.md`
+  - `docs/agents/issue-tracker.md`
+  - `docs/agents/triage-labels.md`
+- `CLAUDE.md` gains an **agent-skills** configuration block.
+- No application code changes. Tests still pass (3 tests).
+
+## 6. End state — how to check
 ```bash
-npm install
-npm run dev        # http://localhost:5173 — the Relay leads list
-npm test           # vitest — existing service tests are green
-npm run typecheck
+git diff 00_begin..00_end     # the exact changes this stage should produce
+git checkout 00_end           # jump straight to the finished version if you get stuck
 ```
-
-## Your job today
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** — the one messy Slack message you start from.
-2. Run **`/align`** and let it interview you to a shared design concept.
-3. **`/write-spec`** → **`/slice`** → **`/build`** (with **`/tdd`**) → **`/review`**.
-4. Ship the first tracer bullet: *a lead replies → score awarded → badge on the list.*
-
-First run **`/setup`** once to wire up the issue tracker (local markdown in
-`.scratch/`), the triage labels, and the domain-doc layout the other skills assume.
-Lost? Run **`/ask`**.
-
-## What's here
-
-```
-src/
-  domain/      Lead, Activity, the LeadRepo seam (the test surface), seed data
-  services/    leadService — lists leads BY RECENCY (the bug: recency ≠ worth)
-  ui/          the leads table + detail panel (the badge has a marked home)
-  test/        makeTestRepo — the test-side adapter; copy its pattern
-.claude/skills/ the full STDD skill set (align, write-spec, slice, build, tdd, …)
-CLAUDE.md       agent-skills config + the coding standards /review checks against
-CONTEXT.md      the Relay domain glossary (grow it with /model)
-BRIEF.md        the brief
-```
-
-There is deliberately **no** score, tier, or `ScoreEvent` yet — that's the feature.
-
-## The STDD skills in this repo
-
-`align` · `spike` · `write-spec` · `slice` · `build` · `tdd` · `review` ·
-`deepen` · `model` · `sweep` · `diagnose` · `triage` · `handoff` · `afk` ·
-`swarm` · `setup` · `ask`
-
-Methodology adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills)
-(MIT), distilled into the STDD vocabulary.
+When the stage is done, the repo is configured and ready for `/align`. Continue with stage 01.
